@@ -1,0 +1,83 @@
+#!/bin/bash
+: '
+	Interactive linux utility to search and replace text inside files inside a directory
+
+
+	Author   : Viki (a) Vignesh Natarajan
+	Contact  : vikiworks.io  
+'
+
+
+if [ -z "$1" ]; then
+    echo "usage: sr <search_string> <replace_string> <file_name/ wildcard file names>"
+    echo 
+    echo "example: sr foo bar "*.html"" 
+    echo 
+    exit 1
+fi
+
+if [ -z "$2" ]; then
+    echo "usage: sr <search_string> <replace_string> <file_name/ wildcard file names>"
+    echo 
+    echo "example: sr foo bar "*.html"" 
+    echo 
+    exit 1
+fi
+
+if [ -z "$3" ]; then
+    echo "usage: sr <search_string> <replace_string> <file_name/ wildcard file names>"
+    echo 
+    echo "example: sr foo bar "*.html"" 
+    echo 
+    exit 1
+fi
+
+
+
+SEARCH_STRING="$1"
+REPLACE_STRING="$2"
+args=( $@ )
+
+echo
+echo "    search pattern  ( $SEARCH_STRING  )"
+echo "    replace pattern ( $REPLACE_STRING )"
+echo 
+
+i=0
+hit=0
+n_args_to_skip=2
+for file in "${args[@]}"
+do
+    if [ $i -lt $n_args_to_skip ]; then
+        i=$((i+1))
+	continue
+    fi
+
+    grep $SEARCH_STRING $file 1> /dev/null 2> /dev/null
+    if [ $? -ne 0 ]; then 
+        #echo "Search string not available at ( $file )"
+        continue
+    fi
+    
+    hit=1
+
+    read -p "    Do you want to execute search-replace operation on ( $file ) ? " -n 1 -r
+    if [[ ! $REPLY =~ ^[Yy]$ ]]
+    then
+       echo
+       echo "    Skipping search and replace operation on ($file)"
+       echo
+       continue
+    fi
+    echo
+
+        vim -c "%s/$SEARCH_STRING/$REPLACE_STRING/gc" -c 'wq' $file
+    
+done
+
+if [ $hit -eq 0 ]; then
+    echo " no files with requested search pattern found"
+fi
+echo
+
+
