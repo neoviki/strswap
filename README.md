@@ -1,6 +1,6 @@
 ## Interactive search and replace utility for linux/mac
 
-## Usage:
+## Syntax:
 
    $sr <search_pattern>  <replace_pattern> <file_name(s)/ wildcard file pattern>
 
