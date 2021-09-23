@@ -2,13 +2,13 @@
 
 ## Syntax:
 
-   $sr <search_string> <replace_string> <file_extension, just extension don't prepend with '*' >
+   $strswap <search_string> <replace_string> <file_extension, just extension don't prepend with '*' >
 
 	- Don't add "*" in front of file extension, just input .php or .c 
 
 ## Example Usage
 
- 	$sr foo bar .php
+ 	$strswap foo bar .php
 
 	This command recursively search for foo and replace the text with bar in all the php files insided the directory and sub-directories.
 
