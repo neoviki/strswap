@@ -2,14 +2,15 @@
 
 ## Syntax:
 
-   $sr <search_pattern>  <replace_pattern> <file_name(s)/ wildcard file pattern>
+   $sr <search_pattern>  <replace_pattern> <file extension>
 
+	- Don't add "*" in front of file extension, just input .php or .c 
 
 ## Example Usage
 
- 	$sr foo bar *.php
+ 	$sr foo bar .php
 
-	This command search for foo and replace the text with bar in all the php files in the current directory
+	This command recursively search for foo and replace the text with bar in all the php files insided the directory and sub-directories.
 
 
 ## Installation
