@@ -1,8 +1,8 @@
-## Interactive search and replace utility for linux/mac
+##  Recursive search and replace utility for linux/mac
 
 ## Syntax:
 
-   $sr <search_pattern>  <replace_pattern> <file extension>
+   $sr <search_string> <replace_string> <file_extension, just extension don't prepend with '*' >
 
 	- Don't add "*" in front of file extension, just input .php or .c 
 
