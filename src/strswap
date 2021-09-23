@@ -116,7 +116,8 @@ function user_confirmation(){
 function search_n_replace(){
 	echo " Search and Replace    [  Begin  ]"
 	echo
-    find . -type f -name "*${E}"  | while read -r F; do echo "S [ $S ] R [ $R ] F [ $F ]"; sed -i -e "s/$S/$R/g" "$F";done
+    #find will not list symbolic link
+	find . -type f -name "*${E}"  | while read -r F; do echo "S [ $S ] R [ $R ] F [ $F ]"; sed -i -e "s/$S/$R/g" "$F";done
 	echo
 	echo " Search and Replace    [  End    ]"
 	echo
