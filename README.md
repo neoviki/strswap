@@ -12,6 +12,20 @@
 
 	This command recursively search for foo and replace the text with bar in all the php files insided the directory and sub-directories.
 
+## Key Functionalities:
+
+       - Recursively search for text inside files
+       - Search all files with the input file extension
+       - The tool doesn't touch symbolic link
+       - If symbolic link points to a file outsite the directory ( No search/replace operation happen outside the current directory )
+       - No backup file will be created, It is the responsibility of the user to take a backup
+       - Recursively search all the sub directories
+
+## Useful for:
+
+    - Web Site Admin
+    - System Admin
+
 
 ## Installation
 

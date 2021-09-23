@@ -1,5 +1,6 @@
 1. Detect search and replace attempt inside the utility itself (strswap). Block such actions
 
 Bug:
-2. In Mac a file named t.txt--follow-symlinks is created after running the utility. Fix this issue
+2. In Mac a backup file is getting created, fix it
 
+2. In linux it is working fine

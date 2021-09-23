@@ -4,9 +4,10 @@
 #
 #       - Recursively search for text inside files
 #       - Search all files with the input file extension
-#       - The tool follows symbolic link and update the actual file
+#       - The tool doesn't touch symbolic link
+#		- If symbolic link points to a file outsite the directory ( No search/replace operation happen outside the current directory ) 
 #       - No backup file will be created, It is the responsibility of the user to take a backup
-#	    - Recursively search all th sub directories
+#	    - Recursively search all the sub directories
 #
 #    Useful for:
 #
@@ -115,7 +116,7 @@ function user_confirmation(){
 function search_n_replace(){
 	echo " Search and Replace    [  Begin  ]"
 	echo
-    find . -type f -name "*${E}"  | while read -r F; do echo "S [ $S ] R [ $R ] F [ $F ]"; sed -i --follow-symlinks -e "s/$S/$R/g" "$F";done
+    find . -type f -name "*${E}"  | while read -r F; do echo "S [ $S ] R [ $R ] F [ $F ]"; sed -i -e "s/$S/$R/g" "$F";done
 	echo
 	echo " Search and Replace    [  End    ]"
 	echo
