@@ -20,7 +20,7 @@
        - If symbolic link points to a file outsite the directory ( No search/replace operation happen outside the current directory )
        - No backup file will be created, It is the responsibility of the user to take a backup
        - Recursively search all the sub directories
-
+	   - Support File Names with whitespace 
 ## Useful for:
 
     - Web Site Admin
