@@ -1,0 +1,2 @@
+1. Detect search and replace attempt inside the utility itself (strswap). Block such actions
+

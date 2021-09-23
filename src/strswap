@@ -1,27 +1,29 @@
 #!/bin/bash
-: '
-	Linux utility to recursively search and replace text inside files 
-
-        - Recursively search for text inside files
-        - Search all files with the input file extension
-        - The tool follows symbolic link and update the actual file
-        - No backup file will be created, It is the responsibility of the user to take a backup
-	- Recursively search all th sub directories
-
-    Useful for:
-
-        - Web Site Admin
-        - System Admin
-
-
-
-	Author   : Viki (a) Vignesh Natarajan
-	Contact  : vikiworks.io  
-'
+#
+#	Linux utility to recursively search and replace text inside files 
+#
+#       - Recursively search for text inside files
+#       - Search all files with the input file extension
+#       - The tool follows symbolic link and update the actual file
+#       - No backup file will be created, It is the responsibility of the user to take a backup
+#	    - Recursively search all th sub directories
+#
+#    Useful for:
+#
+#        - Web Site Admin
+#        - System Admin
+#
+#
+#
+#	Author   : Viki (a) Vignesh Natarajan
+#	Contact  : vikiworks.io  
+#
+#
 
 S="$1"
 R="$2"
 E="$3"
+Q="$4"
 
 function usage(){
     echo "  Usage : $0 <search string> < replace string > <File Extension, .php, .txt etc>"
@@ -56,24 +58,32 @@ function print_info(){
 }
 
 function user_confirmation(){
+	if [ "$Q" == "-q" ]; then
+		return
+	fi
+
     echo
     read -p " Do you want to recursively search and replace? ( Y/N )" -n 1 -r
     echo
+    echo
 
-    if [[ ! $REPLY =~ ^[Yy]$ ]]
-    then
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
         echo " note:   abort search and replace operation"
         exit 1
     fi
 }
 
 function search_n_replace(){
+	echo " Search and Replace    [  Begin  ]"
+	echo
 	find . -type f -name "*${E}"  | while read -r file; do echo "S [ $S ] R [ $R ] F [ $file ]"; sed -i --follow-symlinks -e "s/$S/$R/g" "$file";done
+	echo
+	echo " Search and Replace    [  End    ]"
+	echo
 }
 
 input_validation
 print_info
-# You can comment user_confirmation if you don't need it
 user_confirmation
 search_n_replace
 
