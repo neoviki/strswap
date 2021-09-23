@@ -24,7 +24,10 @@ R="$2"
 E="$3"
 
 function usage(){
-    echo "Usage : $0 <search string> < replace string > <File Extension, .php, .txt etc>"
+    echo "  Usage : $0 <search string> < replace string > <File Extension, .php, .txt etc>"
+    echo
+    echo "    Note  : don't use wildcard characters in input example "*" 
+    echo
 }
 
 function input_validation(){
