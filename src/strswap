@@ -25,10 +25,13 @@ R="$2"
 E="$3"
 Q="$4"
 
+ARGC=$#
+
 function usage(){
-    echo "  Usage : $0 <search string> < replace string > <File Extension, .php, .txt etc>"
     echo
-    echo "    Note  : don't use wildcard characters in input example "*" "
+    echo "  usage : $0 <search string> < replace string > <file extension>"
+    echo
+    echo "  note  : don't use wildcard characters in input example "*" "
     echo
 }
 
@@ -47,6 +50,42 @@ function input_validation(){
         usage
         exit 1
     fi
+
+	if [[ "$S" == *"*"* ]]; then
+		echo
+  		echo "  error: wildcard character ( * ) not supported"
+		usage
+		exit 1
+	fi
+
+	if [[ "$R" == *"*"* ]]; then
+		echo
+  		echo "  error: wildcard character ( * ) not supported"
+		usage
+		exit 1
+	fi
+
+	if [[ "$E" == *"*"* ]]; then
+		echo
+  		echo "  error: wildcard character ( * ) not supported"
+		usage
+		exit 1
+	fi
+
+
+	if [[ "$E" != *"."* ]]; then
+		echo
+  		echo "  error: file extension without (.) is not supported"
+		usage
+		exit 1
+	fi
+
+	if [ $ARGC -gt 4 ]; then 
+		echo
+		echo "  error: more of inputs than expected"
+		usage
+		exit 1
+	fi
 }
 
 function print_info(){
@@ -76,7 +115,7 @@ function user_confirmation(){
 function search_n_replace(){
 	echo " Search and Replace    [  Begin  ]"
 	echo
-	find . -type f -name "*${E}"  | while read -r file; do echo "S [ $S ] R [ $R ] F [ $file ]"; sed -i --follow-symlinks -e "s/$S/$R/g" "$file";done
+    find . -type f -name "*${E}"  | while read -r F; do echo "S [ $S ] R [ $R ] F [ $F ]"; sed -i --follow-symlinks -e "s/$S/$R/g" "$F";done
 	echo
 	echo " Search and Replace    [  End    ]"
 	echo
@@ -86,4 +125,3 @@ input_validation
 print_info
 user_confirmation
 search_n_replace
-
